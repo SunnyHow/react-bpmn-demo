@@ -1,0 +1,219 @@
+/* ================ 全局样式 ================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    color: #333;
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+/* ================ 主容器布局 ================ */
+.bpmn-app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: #f8f9fa;
+}
+
+.bpmn-canvas-container {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    background: #f8f9fa;
+}
+
+.bpmn-properties-panel-container {
+    width: 350px;
+    height: 100%;
+    background: #fff;
+    border-left: 1px solid #e0e0e0;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ================ 属性面板头部 ================ */
+.panel-header {
+    padding: 14px 16px;
+    background: #409eff;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.panel-header h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* ================ 面板内容区域 ================ */
+.panel-content {
+    padding: 16px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* ================ 属性控件通用样式 ================ */
+.property-control {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.property-control label {
+    display: block;
+    margin-bottom: 6px;
+    color: #555;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.property-control input[type="text"],
+.property-control input[type="number"],
+.property-control textarea,
+.property-control select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: all 0.3s;
+    background-color: #fff;
+}
+
+.property-control input[type="text"]:focus,
+.property-control input[type="number"]:focus,
+.property-control textarea:focus,
+.property-control select:focus {
+    outline: none;
+    border-color: #409eff;
+    box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+}
+
+.property-control textarea {
+    min-height: 80px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* ================ 下拉选择框特殊样式 ================ */
+.property-control select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 14px;
+    padding-right: 30px;
+}
+
+/* ================ 元素信息展示区域 ================ */
+.element-info {
+    margin-top: 20px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #adb5bd;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #495057;
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.info-value {
+    color: #212529;
+    word-break: break-all;
+}
+
+/* ================ 条件属性组 ================ */
+.conditional-property-group {
+    margin-top: 15px;
+    padding: 12px;
+    background: #f1f8ff;
+    border-radius: 4px;
+    border-left: 3px solid #4dabf7;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================ 无元素选中状态 ================ */
+.no-element-selected {
+    padding: 40px 20px;
+    text-align: center;
+    color: #868e96;
+    font-size: 14px;
+}
+
+.no-element-selected .icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #adb5bd;
+}
+
+/* ================ 特定元素面板样式 ================ */
+.task-properties,
+.start-event-properties,
+.default-properties {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ================ 表单验证状态 ================ */
+.property-control.error input,
+.property-control.error textarea,
+.property-control.error select {
+    border-color: #ff6b6b;
+}
+
+.property-control.error .error-message {
+    color: #ff6b6b;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* ================ 响应式调整 ================ */
+@media (max-width: 768px) {
+    .bpmn-app-container {
+        flex-direction: column;
+    }
+
+    .bpmn-properties-panel-container {
+        width: 100%;
+        height: 300px;
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+    }
+}
+
+/* ================ 覆盖原始bpmn-js样式 ================ */
+.bpp-properties-panel {
+    display: none !important; /* 隐藏原始属性面板 */
+}
+
+.djs-container svg {
+    background-color: #f8f9fa !important;
+}
