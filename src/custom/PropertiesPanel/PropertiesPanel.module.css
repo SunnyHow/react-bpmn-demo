@@ -1,33 +1,42 @@
-/* ================ 全局样式 ================ */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    color: #333;
-    line-height: 1.6;
-    overflow: hidden;
-}
-
-/* ================ 主容器布局 ================ */
-.bpmn-app-container {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    background: #f8f9fa;
-}
-
-.bpmn-canvas-container {
-    flex: 1;
+.propertiesPanel {
+    width: 100%;
     height: 100%;
-    position: relative;
-    background: #f8f9fa;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
+.panelHeader {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.panelHeader h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.panelContent {
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+.noElementSelected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #666;
+    font-size: 14px;
+}
+
+
+/*
+*/
+/* custom-properties-panel.css */
 .bpmn-properties-panel-container {
     width: 350px;
     height: 100%;
@@ -39,7 +48,6 @@ body {
     overflow: hidden;
 }
 
-/* ================ 属性面板头部 ================ */
 .panel-header {
     padding: 14px 16px;
     background: #409eff;
@@ -58,14 +66,12 @@ body {
     font-weight: 600;
 }
 
-/* ================ 面板内容区域 ================ */
 .panel-content {
     padding: 16px;
     overflow-y: auto;
     flex: 1;
 }
 
-/* ================ 属性控件通用样式 ================ */
 .property-control {
     margin-bottom: 18px;
     position: relative;
@@ -107,7 +113,6 @@ body {
     line-height: 1.5;
 }
 
-/* ================ 下拉选择框特殊样式 ================ */
 .property-control select {
     appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -117,7 +122,6 @@ body {
     padding-right: 30px;
 }
 
-/* ================ 元素信息展示区域 ================ */
 .element-info {
     margin-top: 20px;
     padding: 12px;
@@ -144,7 +148,6 @@ body {
     word-break: break-all;
 }
 
-/* ================ 条件属性组 ================ */
 .conditional-property-group {
     margin-top: 15px;
     padding: 12px;
@@ -159,7 +162,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ================ 无元素选中状态 ================ */
 .no-element-selected {
     padding: 40px 20px;
     text-align: center;
@@ -173,7 +175,6 @@ body {
     color: #adb5bd;
 }
 
-/* ================ 特定元素面板样式 ================ */
 .task-properties,
 .start-event-properties,
 .default-properties {
@@ -182,7 +183,6 @@ body {
     gap: 16px;
 }
 
-/* ================ 表单验证状态 ================ */
 .property-control.error input,
 .property-control.error textarea,
 .property-control.error select {
@@ -193,27 +193,4 @@ body {
     color: #ff6b6b;
     font-size: 12px;
     margin-top: 4px;
-}
-
-/* ================ 响应式调整 ================ */
-@media (max-width: 768px) {
-    .bpmn-app-container {
-        flex-direction: column;
-    }
-
-    .bpmn-properties-panel-container {
-        width: 100%;
-        height: 300px;
-        border-left: none;
-        border-top: 1px solid #e0e0e0;
-    }
-}
-
-/* ================ 覆盖原始bpmn-js样式 ================ */
-.bpp-properties-panel {
-    display: none !important; /* 隐藏原始属性面板 */
-}
-
-.djs-container svg {
-    background-color: #f8f9fa !important;
 }

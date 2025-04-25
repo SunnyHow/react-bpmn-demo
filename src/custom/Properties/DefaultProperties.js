@@ -1,8 +1,12 @@
 import React from 'react';
-import PropertyInput from '../property/PropertyInput';
-import PropertyTextarea from '../property/PropertyTextarea';
+import PropertyInput from '../Property/PropertyInput';
+import PropertyTextarea from '../Property/PropertyTextarea';
 
-export default function DefaultProperties({ element, modeling }) {
+export default function DefaultProperties({element, modeling}) {
+    if (!element) {
+        return null;
+    }
+
     const getValue = (propertyId) => {
         return element.businessObject.get(propertyId) || '';
     };

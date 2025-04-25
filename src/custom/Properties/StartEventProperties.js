@@ -1,6 +1,6 @@
 import React from 'react';
-import PropertyInput from '../property/PropertyInput';
-import PropertySelect from '../property/PropertyTextarea';
+import PropertyInput from '../Property/PropertyInput';
+import PropertySelect from '../Property/PropertyTextarea';
 
 export default function StartEventProperties({ element, modeling }) {
 

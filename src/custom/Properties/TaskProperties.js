@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useModeler } from '../context/ModelerContext';
+import { useModeler } from '../ModelerContext/ModelerContext';
 
 export default function TaskProperties({ element }) {
     const [name, setName] = useState('');
@@ -30,7 +30,6 @@ export default function TaskProperties({ element }) {
         }
     };
 
-    console.log("组件重新渲染了")
 
     return (
         <div className="task-properties">

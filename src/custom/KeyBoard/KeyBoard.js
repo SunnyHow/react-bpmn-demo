@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaKeyboard } from 'react-icons/fa';
 
-const KeyboardIcon = (props) => {
+const KeyBoard = (props) => {
     const [showShortcuts, setShowShortcuts] = useState(false);
 
     const toggleShortcuts = () => {
@@ -59,4 +59,4 @@ const KeyboardIcon = (props) => {
     );
 };
 
-export default KeyboardIcon;
+export default KeyBoard;

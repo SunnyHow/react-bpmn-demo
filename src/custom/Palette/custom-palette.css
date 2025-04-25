@@ -1,0 +1,111 @@
+/* 自定义 Palette 容器 */
+.djs-palette {
+  width: 120px !important; /* 保持两列宽度 */
+  background: #f8f8f8 !important;
+  border-right: 1px solid #ddd !important;
+  padding: 5px !important;
+}
+
+/* 两列网格布局 */
+.djs-palette .djs-palette-entries {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+
+/* 分组标题样式 */
+.djs-palette .group {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+  padding: 2px 0;
+  text-transform: uppercase;
+  margin: 2px 0;
+}
+
+/* 元素图标基础样式 */
+.djs-palette .entry {
+  width: 50px !important;
+  height: 50px !important;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  transition: background-color 0.15s;
+}
+
+.djs-palette .entry:hover {
+  background-color: #ebebeb;
+}
+
+/* 强制事件类元素在左列 */
+.djs-palette [data-group="event"] {
+  grid-column: 1;
+}
+
+/* 强制活动类元素在右列 */
+.djs-palette [data-group="activity"],
+.djs-palette [data-group="gateway"] {
+  grid-column: 2;
+}
+
+/* 工具类元素保持跨列 */
+.djs-palette [data-group="tools"] {
+  grid-column: 1 / -1;
+}
+
+/* 图标大小调整 */
+.djs-palette .bpmn-icon-start-event-none,
+.djs-palette .bpmn-icon-end-event-none {
+  background-size: 22px !important;
+}
+
+.djs-palette .bpmn-icon-task,
+.djs-palette .bpmn-icon-gateway-parallel {
+  background-size: 24px !important;
+}
+
+.djs-palette .bpmn-icon-hand-tool {
+  background-size: 20px !important;
+}
+
+
+/**/
+/* custom-palette.css */
+.djs-palette {
+  width: 120px !important;
+  background: #f8f8f8 !important;
+  border-right: 1px solid #ddd !important;
+  padding: 5px !important;
+}
+
+.djs-palette .entry {
+  width: 50px !important;
+  height: 50px !important;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  transition: background-color 0.15s;
+}
+
+.djs-palette .entry:hover {
+  background-color: #ebebeb;
+}
+
+.djs-palette [data-group="event"] {
+  grid-column: 1;
+}
+
+.djs-palette [data-group="activity"],
+.djs-palette [data-group="gateway"] {
+  grid-column: 2;
+}
+
+.djs-palette [data-group="tools"] {
+  grid-column: 1 / -1;
+}
