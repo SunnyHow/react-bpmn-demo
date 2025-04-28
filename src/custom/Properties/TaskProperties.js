@@ -1,55 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { useModeler } from '../ModelerContext/ModelerContext';
+import React from 'react';
+import PropertyInput from '../Property/PropertyInput';
+import PropertyTextarea from '../Property/PropertyTextarea';
 
-export default function TaskProperties({ element }) {
-    const [name, setName] = useState('');
-    const [documentation, setDocumentation] = useState('');
-    const modeler = useModeler();
+export default function TaskProperties({ element, modeling }) {
 
-    // 初始化属性值
-    useEffect(() => {
-        if (element) {
-            setName(element.businessObject.name || '');
-            setDocumentation(element.businessObject.documentation || '');
-        }
-    }, [element]);
-
-    const handleNameChange = (value) => {
-        setName(value);
-        if (modeler && element) {
-            const modeling = modeler.get('modeling');
-            modeling.updateProperties(element, { name: value });
-        }
+    const getValue = (propertyId) => {
+        return element.businessObject.get(propertyId) || '';
     };
 
-    const handleDocumentationChange = (value) => {
-        setDocumentation(value);
-        if (modeler && element) {
-            const modeling = modeler.get('modeling');
-            modeling.updateProperties(element, { documentation: value });
-        }
+    const handleChange = (propertyId, value) => {
+        modeling.updateProperties(element, {
+            [propertyId]: value
+        });
     };
-
 
     return (
         <div className="task-properties">
-            <div className="property-control">
-                <label>任务名称</label>
-                <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => handleNameChange(e.target.value)}
-                />
-            </div>
+            <PropertyInput
+                label="任务名称"
+                value={getValue('name')}
+                onChange={(value) => handleChange('name', value)}
+            />
 
-            <div className="property-control">
-                <label>任务描述</label>
-                <textarea
-                    value={documentation}
-                    onChange={(e) => handleDocumentationChange(e.target.value)}
-                    rows={3}
-                />
-            </div>
+            <PropertyTextarea
+                label="任务描述"
+                value={getValue('documentation')}
+                onChange={(value) => handleChange('documentation', value)}
+            />
         </div>
     );
 }

@@ -8,7 +8,7 @@ export default function DefaultProperties({element, modeling}) {
     }
 
     const getValue = (propertyId) => {
-        return element.businessObject.get(propertyId) || '';
+        return element?.businessObject.get(propertyId) || '';
     };
 
     const handleChange = (propertyId, value) => {

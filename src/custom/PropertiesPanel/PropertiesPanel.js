@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useModeler } from '../ModelerContext/ModelerContext';
+import React, {useEffect, useState} from 'react';
+import {useModeler} from '../ModelerContext/ModelerContext';
 import TaskProperties from '../Properties/TaskProperties';
 import StartEventProperties from '../Properties/StartEventProperties';
 import DefaultProperties from '../Properties/DefaultProperties';
@@ -15,27 +15,30 @@ const elementTypeToComponent = {
 };
 
 export default function PropertiesPanel() {
-    const { modeler } = useModeler();
-    const [selectedElement, setSelectedElement] = useState(null);
+    const {modeler} = useModeler();
+    const [activeElements, setActiveElements] = useState({
+        selectedElements: [],
+        selectedElement: null,
+    });
 
     useEffect(() => {
         if (!modeler) return;
 
-        // 获取流程根元素
-        const canvas = modeler.get('canvas');
-        const rootElement = canvas.getRootElement();
-
         const handleSelectionChanged = (event) => {
-            console.log("selection.changed");
-            const newSelection = event.newSelection[0] || rootElement;
-            setSelectedElement(newSelection);
+            const newSelection = event.newSelection[0];
+            setActiveElements({
+                selectedElements: event.newSelection,
+                selectedElement: newSelection
+            });
         };
 
         const handleElementChanged = (event) => {
-            console.log("element.changed");
-            const { element } = event;
+            const {element} = event;
+            const {selectedElement} = activeElements;
             if (selectedElement && selectedElement.id === element.id) {
-                setSelectedElement(element);
+                setActiveElements({
+                    selectedElement: element,
+                });
             }
         };
 
@@ -46,16 +49,15 @@ export default function PropertiesPanel() {
             modeler.off('selection.changed', handleSelectionChanged);
             modeler.off('element.changed', handleElementChanged);
         };
-    }, [modeler, selectedElement]);
+    }, [modeler, activeElements]);
+
+    const {selectedElement} = activeElements;
 
     if (!selectedElement) {
         return (
             <div className={classes.propertiesPanel}>
                 <div className={classes.panelHeader}>
                     <h3>属性</h3>
-                </div>
-                <div className={classes.panelContent}>
-                    <DefaultProperties />
                 </div>
             </div>
         );
